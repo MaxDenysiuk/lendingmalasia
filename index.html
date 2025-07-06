@@ -54,7 +54,6 @@
       user-select: none;
       letter-spacing: 2px;
       color: #4e342e;
-      transition: all 0.3s ease;
     }
 
     .steps {
@@ -143,7 +142,7 @@
   </style>
 </head>
 <body>
-  <img class="flag" src="https://flagcdn.com/w40/my.png" alt="Bendera Malaysia" />
+  <img class="flag" src="https://flagcdn.com/w40/my.png" alt="Malaysia flag" />
 
   <header>Menangi Telefon Pintar Anda Sekarang!</header>
   <div class="timer" id="timer">05:00</div>
@@ -159,30 +158,26 @@
   <div class="winner-container" id="winnerContainer"></div>
 
   <script>
-    // Ambil subid dari URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const subid = urlParams.get("subid") || "default";
-
-    // Sediakan link offer dengan subid
-    const offerUrl = `https://singingfiles.com/show.php?l=0&u=2417307&id=70093&subid=${subid}`;
+    // ✅ Посилання з ${SUBID} — для PropellerAds
+    const offerUrl = "https://singingfiles.com/show.php?l=0&u=2417307&id=70093&subid=${SUBID}";
 
     function claim() {
       window.location.href = offerUrl;
     }
 
-    // Countdown
+    // Таймер
     const timerEl = document.getElementById('timer');
     let timeLeft = 300;
     function updateTimer() {
       const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
       const sec = String(timeLeft % 60).padStart(2, '0');
       timerEl.textContent = `${min}:${sec}`;
-      if (timeLeft > 0) timeLeft--;
+      timeLeft--;
     }
     updateTimer();
     setInterval(updateTimer, 1000);
 
-    // Simulasi pemenang
+    // Повідомлення переможців
     const winners = [
       {name: 'Aisyah', city: 'Kuala Lumpur', prize: 'iPhone 15 Pro Max'},
       {name: 'Ahmad', city: 'Johor Bahru', prize: 'Samsung Galaxy S24'},
@@ -193,18 +188,20 @@
 
     let winnerIndex = 0;
     function showNextWinner() {
+      if (winnerIndex >= winners.length) winnerIndex = 0;
       const w = winners[winnerIndex];
       const el = document.createElement('div');
       el.className = 'winner-notification';
       el.textContent = `${w.name} dari ${w.city} baru sahaja memenangi ${w.prize}!`;
       document.getElementById('winnerContainer').appendChild(el);
       setTimeout(() => el.remove(), 7000);
-      winnerIndex = (winnerIndex + 1) % winners.length;
+      winnerIndex++;
     }
 
     setTimeout(() => setInterval(showNextWinner, 3000), 3000);
   </script>
 </body>
 </html>
+
 
 
