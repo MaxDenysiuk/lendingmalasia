@@ -1,205 +1,381 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menangi Telefon Pintar Anda!</title>
-  <meta name="description" content="Pilih umur anda dan dapatkan telefon pintar percuma! Terhad untuk pengguna Malaysia sahaja.">
-  <meta name="theme-color" content="#d84315" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dapatkan Telefon Pintar Anda — Jangan Lepaskan Peluang!</title>
+<meta name="description" content="Pilih umur anda dan tuntut telefon! Tawaran sah untuk Malaysia. Samsung, iPhone, dan banyak lagi! 5 minit masa tamat." />
+<meta name="theme-color" content="#228B22" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto&display=swap');
 
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #efebe9, #ffccbc);
-      color: #4e342e;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px 15px;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    header {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin: 10px 0 20px;
-      text-align: center;
-      color: #bf360c;
-    }
-    .flag {
-      width: 48px;
-      height: auto;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-    }
-    .age-selector {
-      background: #ffffffdd;
-      padding: 20px 25px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 360px;
-      box-shadow: 0 8px 25px rgb(191 54 12 / 0.3);
-      margin-bottom: 30px;
-      text-align: center;
-    }
-    .age-selector label {
-      font-size: 1.4rem;
-      font-weight: 700;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-    }
-    .checkmark {
-      display: inline-block;
-      color: green;
-      font-size: 1.3rem;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .visible {
-      opacity: 1;
-    }
-    select, button {
-      width: 100%;
-      font-size: 1.1rem;
-      padding: 12px;
-      border-radius: 12px;
-      border: 2px solid #bf360c;
-      outline: none;
-      margin-top: 15px;
-    }
-    button {
-      background: #d84315;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .timer {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: #ff7043cc;
-      padding: 12px 24px;
-      border-radius: 50px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 25px rgb(255 112 67 / 0.6);
-    }
-    .winner-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 300px;
-      z-index: 999;
-    }
-    .winner-notification {
-      background: rgba(255, 112, 67, 0.9);
-      padding: 12px 18px;
-      border-radius: 16px;
-      color: #fff;
-      font-weight: 600;
-      margin-bottom: 10px;
-      animation: slideIn 0.5s ease forwards, fadeOut 1s ease forwards 6s;
-      opacity: 0;
-    }
-    @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-  </style>
+  body {
+    margin: 0; 
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #e0f2f1, #a5d6a7);
+    color: #2e7d32;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 30px 15px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  header {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.8rem; 
+    font-weight: 700;
+    margin: 15px 0 30px;
+    text-align: center;
+    color: #1b5e20;
+    text-shadow: 1px 1px 3px #81c784aa;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .flag {
+    width: 40px;
+    height: 25px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/6/66/Flag_of_Malaysia.svg') no-repeat center/contain;
+  }
+  .age-selector {
+    background: #ffffffdd;
+    padding: 25px 30px;
+    border-radius: 20px;
+    width: 360px;
+    box-shadow: 0 8px 25px rgba(34, 139, 34, 0.3);
+    margin-bottom: 35px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+  .age-selector:hover {
+    box-shadow: 0 8px 35px rgba(34, 139, 34, 0.5);
+  }
+  .age-selector label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: block;
+    color: #1b5e20;
+  }
+  select {
+    width: 100%;
+    font-size: 1.25rem;
+    padding: 12px 10px;
+    border-radius: 12px;
+    border: 2px solid #1b5e20;
+    outline: none;
+    text-align-last: center;
+    cursor: pointer;
+    background: #fff;
+    transition: border-color 0.3s ease;
+  }
+  select:focus {
+    border-color: #2e7d32;
+  }
+  button.select-btn {
+    margin-top: 20px;
+    background: #2e7d32;
+    border: none;
+    padding: 14px 0;
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #fff;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.6);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  button.select-btn:hover {
+    background: #1b5e20;
+    box-shadow: 0 6px 20px rgba(27, 94, 32, 0.8);
+  }
+
+  /* Чек-лист */
+  .steps {
+    margin-bottom: 30px;
+    width: 360px;
+    background: #ffffffcc;
+    border-radius: 20px;
+    padding: 20px 30px;
+    box-shadow: 0 6px 18px rgba(34, 139, 34, 0.3);
+    color: #1b5e20;
+    font-weight: 600;
+  }
+  .step {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.15rem;
+    opacity: 0.7;
+    transition: opacity 0.6s ease;
+  }
+  .step.done {
+    opacity: 1;
+    color: #2e7d32;
+  }
+  .checkmark {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2.5px solid #2e7d32;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .checkmark.done::after {
+    content: "✓";
+    position: absolute;
+    top: 0; left: 6px;
+    color: #2e7d32;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .comments {
+    background: #ffffffcc;
+    border-radius: 20px;
+    width: 360px;
+    padding: 20px 25px;
+    font-size: 1rem;
+    margin-bottom: 30px;
+    max-height: 240px;
+    overflow-y: auto;
+    box-shadow: 0 6px 18px rgba(34, 139, 34, 0.3);
+    color: #1b5e20;
+  }
+  .comment {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  .comment:last-child {
+    margin-bottom: 0;
+  }
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #2e7d32;
+    box-shadow: 0 2px 6px rgba(46, 125, 50, 0.5);
+  }
+  .comment-text {
+    flex: 1;
+  }
+  .comment-text strong {
+    font-weight: 700;
+    color: #2e7d32;
+  }
+  .comment-text .time {
+    font-style: italic;
+    color: #4a7c45;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 3px;
+  }
+
+  .timer {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    background: #81c784cc;
+    padding: 14px 30px;
+    border-radius: 50px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 25px rgba(129, 199, 132, 0.6);
+    user-select: none;
+    letter-spacing: 2.5px;
+    width: 160px;
+    text-align: center;
+    color: #1b5e20;
+    transition: all 0.6s ease;
+  }
+
+  /* Анімація виграшів */
+  .winner-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 320px;
+    max-width: 90vw;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    pointer-events: none;
+  }
+  .winner-notification {
+    background: rgba(46, 125, 50, 0.9);
+    padding: 14px 20px;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 0 15px #1b5e20cc;
+    animation: slideIn 1s ease forwards, fadeOut 1s ease forwards 7s;
+    opacity: 0;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
+  .winner-notification::before {
+    content: "🎉";
+    margin-right: 10px;
+    font-size: 1.4rem;
+  }
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  /* scrollbar for comments */
+  .comments::-webkit-scrollbar {
+    width: 6px;
+  }
+  .comments::-webkit-scrollbar-thumb {
+    background-color: #2e7d32;
+    border-radius: 3px;
+  }
+</style>
 </head>
 <body>
-  <img src="https://flagcdn.com/w40/my.png" alt="Malaysia Flag" class="flag">
-  <header>Menangi Telefon Pintar Anda!</header>
-  <div class="timer" id="timer">05:00</div>
 
-  <div class="age-selector">
-    <label id="step1">1. Pilih umur anda <span class="checkmark" id="check1">✔</span></label>
-    <select id="age">
-      <option value="" disabled selected>Pilih umur</option>
-      <option value="18-24">18-24</option>
-      <option value="25-34">25-34</option>
-      <option value="35-44">35-44</option>
-      <option value="45+">45+</option>
-    </select>
+<header>
+  <div class="flag" aria-label="Flag of Malaysia"></div>
+  Dapatkan Telefon Pintar Anda Sekarang!
+</header>
 
-    <label id="step2">2. Klik butang "Dapatkan Telefon" <span class="checkmark" id="check2">✔</span></label>
-    <button id="submitAge">Dapatkan Telefon</button>
+<div class="timer" id="timer">05:00</div>
 
-    <label id="step3">3. Ikuti arahan di halaman seterusnya <span class="checkmark" id="check3">✔</span></label>
+<div class="age-selector" id="ageSelector">
+  <label for="age">Pilih umur anda</label>
+  <select id="age" aria-label="Pilih umur anda">
+    <option value="" disabled selected>Pilih umur</option>
+    <option value="18-24">18 - 24 tahun</option>
+    <option value="25-34">25 - 34 tahun</option>
+    <option value="35-44">35 - 44 tahun</option>
+    <option value="45-54">45 - 54 tahun</option>
+    <option value="55+">55 tahun ke atas</option>
+  </select>
+  <button class="select-btn" id="claimBtn" disabled>Ambil Telefon</button>
+</div>
+
+<div class="steps" aria-live="polite">
+  <div class="step" id="step1"><span class="checkmark"></span> Pilih umur anda</div>
+  <div class="step" id="step2"><span class="checkmark"></span> Klik butang "Ambil Telefon"</div>
+  <div class="step" id="step3"><span class="checkmark"></span> Ikuti arahan</div>
+</div>
+
+<div class="comments" aria-live="polite" aria-atomic="true" id="comments">
+  <div class="comment">
+    <img class="avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar of Azman from Kuala Lumpur" />
+    <div class="comment-text">
+      <strong>Azman dari Kuala Lumpur</strong> baru sahaja mendapat iPhone 15! <span class="time">baru sahaja</span>
+    </div>
   </div>
+  <div class="comment">
+    <img class="avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Avatar of Nurul from Penang" />
+    <div class="comment-text">
+      <strong>Nurul dari Penang</strong> baru sahaja mendapat Samsung Galaxy S23! <span class="time">baru sahaja</span>
+    </div>
+  </div>
+</div>
 
-  <div class="winner-container" id="winnerContainer"></div>
+<div class="winner-container" aria-live="polite" aria-atomic="true" id="winnerContainer"></div>
 
-  <script>
-    // Timer logic
-    let timeLeft = 300;
-    const timerEl = document.getElementById('timer');
-
-    function updateTimer() {
-      const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-      const sec = String(timeLeft % 60).padStart(2, '0');
-      timerEl.textContent = `${min}:${sec}`;
-      timeLeft--;
-      if (timeLeft < 0) clearInterval(timerInterval);
+<script>
+  // Таймер 5 хвилин відлік
+  let totalSeconds = 300;
+  const timerElem = document.getElementById('timer');
+  const interval = setInterval(() => {
+    if (totalSeconds <= 0) {
+      clearInterval(interval);
+      timerElem.textContent = "Masa Tamat!";
+      return;
     }
-    const timerInterval = setInterval(updateTimer, 1000);
+    totalSeconds--;
+    let min = Math.floor(totalSeconds / 60);
+    let sec = totalSeconds % 60;
+    timerElem.textContent = `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
+  }, 1000);
 
-    // SubID tracking
-    function getSubId() {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get('subid') || '';
+  // Кроки і галочки
+  const ageSelect = document.getElementById('age');
+  const claimBtn = document.getElementById('claimBtn');
+  const steps = [
+    document.getElementById('step1'),
+    document.getElementById('step2'),
+    document.getElementById('step3')
+  ];
+  const checkmarks = [...steps].map(step => step.querySelector('.checkmark'));
+
+  ageSelect.addEventListener('change', () => {
+    claimBtn.disabled = false;
+    steps[0].classList.add('done');
+    checkmarks[0].classList.add('done');
+  });
+
+  claimBtn.addEventListener('click', () => {
+    steps[1].classList.add('done');
+    checkmarks[1].classList.add('done');
+    alert('Terima kasih! Sila ikut arahan seterusnya untuk menuntut telefon anda.');
+    steps[2].classList.add('done');
+    checkmarks[2].classList.add('done');
+
+    // Перенаправлення з підставленням subid
+    const urlParams = new URLSearchParams(window.location.search);
+    const subid = urlParams.get('subid') || '';
+    const offerUrl = `https://singingfiles.com/show.php?l=0&u=2417307&id=70094&subid=${encodeURIComponent(subid)}`;
+    window.location.href = offerUrl;
+  });
+
+  // Анімації виграшів
+  const winnerContainer = document.getElementById('winnerContainer');
+  const winners = [
+    {name: "Ahmad", city: "Kuala Lumpur", prize: "iPhone 15"},
+    {name: "Siti", city: "Penang", prize: "Samsung Galaxy S23"},
+    {name: "Faizal", city: "Johor Bahru", prize: "iPhone 15"},
+    {name: "Aminah", city: "Kuala Lumpur", prize: "Samsung Galaxy S23"},
+    {name: "Razak", city: "Ipoh", prize: "iPhone 15"},
+    {name: "Liyana", city: "Shah Alam", prize: "Samsung Galaxy S23"},
+  ];
+
+  function showWinner() {
+    if(winnerContainer.children.length >= 3) {
+      winnerContainer.removeChild(winnerContainer.firstChild);
     }
-    const subid = getSubId();
-    const redirectUrl = `https://singingfiles.com/show.php?l=0&u=2417307&id=70094&subid=${subid}`;
-
-    // Submit logic
-    document.getElementById('submitAge').addEventListener('click', () => {
-      const age = document.getElementById('age').value;
-      if (!age) {
-        alert('Sila pilih umur anda!');
-        return;
-      }
-      document.getElementById('check1').classList.add('visible');
-      document.getElementById('check2').classList.add('visible');
-      document.getElementById('check3').classList.add('visible');
-      setTimeout(() => window.location.href = redirectUrl, 1000);
-    });
-
-    // Winner animation
-    const winners = [
-      { name: 'Ahmad', city: 'Kuala Lumpur', prize: 'iPhone 15 Pro' },
-      { name: 'Nurul', city: 'Penang', prize: 'Samsung Galaxy S23' },
-      { name: 'Faizal', city: 'Johor Bahru', prize: 'Xiaomi Mi 13' },
-      { name: 'Aisyah', city: 'Shah Alam', prize: 'iPhone 15 Pro' }
-    ];
-
-    const winnerContainer = document.getElementById('winnerContainer');
-
-    function showWinner(index = 0) {
-      if (index >= winners.length) index = 0;
-      const w = winners[index];
-      const el = document.createElement('div');
-      el.className = 'winner-notification';
-      el.textContent = `${w.name} dari ${w.city} baru sahaja memenangi ${w.prize}!`;
-      winnerContainer.appendChild(el);
+    const winner = winners[Math.floor(Math.random() * winners.length)];
+    const notif = document.createElement('div');
+    notif.className = 'winner-notification';
+    notif.textContent = `${winner.name} dari ${winner.city} baru sahaja mendapat ${winner.prize}!`;
+    winnerContainer.appendChild(notif);
+    // Через 8 секунд прибираємо нотифікацію
+    setTimeout(() => {
+      notif.style.animation = 'fadeOut 1s forwards';
       setTimeout(() => {
-        winnerContainer.removeChild(el);
-        showWinner(index + 1);
-      }, 8000);
-    }
+        if (winnerContainer.contains(notif)) {
+          winnerContainer.removeChild(notif);
+        }
+      }, 1000);
+    }, 7000);
+  }
+  setInterval(showWinner, 8000);
+  showWinner();
+</script>
 
-    setTimeout(() => showWinner(), 3000);
-  </script>
 </body>
 </html>
+
 
 
