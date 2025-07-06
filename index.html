@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menangi Telefon Pintar Anda!</title>
-  <meta name="description" content="Pilih umur anda dan menangi telefon pintar terkini! Samsung, iPhone, Huawei dan banyak lagi! Hanya 5 minit untuk bertindak!" />
+  <title>Peluang Menangi Telefon Baharu</title>
+  <meta name="description" content="Isi maklumat ringkas dan lihat jika anda layak menerima telefon pintar baharu!" />
   <meta name="theme-color" content="#d84315" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto&display=swap');
@@ -12,24 +12,22 @@
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #efebe9, #ffccbc);
+      background: linear-gradient(135deg, #fbe9e7, #fff3e0);
       color: #4e342e;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 30px 15px;
       min-height: 100vh;
-      overflow-x: hidden;
     }
 
     header {
       font-family: 'Poppins', sans-serif;
-      font-size: 2.4rem;
+      font-size: 2rem;
       font-weight: 700;
-      margin: 15px 0 25px;
       text-align: center;
-      color: #bf360c;
-      text-shadow: 1px 1px 3px #ffab91aa;
+      color: #d84315;
+      margin-bottom: 25px;
     }
 
     .flag {
@@ -37,98 +35,91 @@
       top: 15px;
       left: 15px;
       width: 38px;
-      height: auto;
       border-radius: 4px;
       box-shadow: 0 0 8px rgba(0,0,0,0.2);
     }
 
-    .timer {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      background: #ff7043cc;
-      padding: 14px 30px;
-      border-radius: 50px;
-      margin: 20px 0 30px;
-      box-shadow: 0 0 25px rgb(255 112 67 / 0.6);
-      user-select: none;
-      letter-spacing: 2px;
-      color: #4e342e;
-      transition: all 0.3s ease;
-    }
-
     .steps {
-      background: #ffffffdd;
+      background: #fff;
       padding: 25px 30px;
-      border-radius: 20px;
-      width: 360px;
-      box-shadow: 0 8px 25px rgb(191 54 12 / 0.3);
-      margin-bottom: 35px;
+      border-radius: 16px;
+      width: 340px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
       text-align: left;
     }
 
     .steps li {
-      font-size: 1.2rem;
-      margin-bottom: 12px;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
       position: relative;
-      padding-left: 32px;
-      font-family: 'Poppins', sans-serif;
+      padding-left: 28px;
     }
 
     .steps li::before {
       content: '✅';
       position: absolute;
       left: 0;
-      top: 0;
     }
 
-    button.select-btn {
-      margin-top: 20px;
+    .select-btn {
       background: #d84315;
       border: none;
       padding: 14px 0;
       width: 100%;
+      max-width: 340px;
       font-weight: 700;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: #fff;
-      border-radius: 14px;
+      border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgb(216 67 21 / 0.6);
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(216, 67, 21, 0.4);
+      transition: background 0.3s ease;
+    }
+
+    .select-btn:hover {
+      background: #bf360c;
+    }
+
+    .footer {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 40px;
+      text-align: center;
+      max-width: 340px;
+    }
+
+    .footer a {
+      color: #888;
+      text-decoration: underline;
     }
 
     .winner-container {
       position: fixed;
       bottom: 25px;
       right: 25px;
-      width: 320px;
-      max-width: 90vw;
+      width: 300px;
       z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      pointer-events: none;
     }
 
     .winner-notification {
-      background: rgba(255, 112, 67, 0.9);
-      padding: 14px 20px;
-      border-radius: 20px;
-      color: #fff;
+      background: #ffab91;
+      padding: 12px 18px;
+      border-radius: 14px;
+      color: #4e342e;
       font-weight: 600;
-      font-size: 1rem;
-      box-shadow: 0 0 15px #d84315cc;
+      font-size: 0.95rem;
+      box-shadow: 0 0 12px rgba(191, 54, 12, 0.3);
       animation: slideIn 1s ease forwards, fadeOut 1s ease forwards 6s;
       opacity: 0;
-      user-select: none;
       display: flex;
       align-items: center;
+      margin-bottom: 8px;
     }
 
     .winner-notification::before {
-      content: "🎉";
+      content: "🎁";
       margin-right: 10px;
-      font-size: 1.4rem;
     }
 
     @keyframes slideIn {
@@ -145,50 +136,41 @@
 <body>
   <img class="flag" src="https://flagcdn.com/w40/my.png" alt="Bendera Malaysia" />
 
-  <header>Menangi Telefon Pintar Anda Sekarang!</header>
-  <div class="timer" id="timer">05:00</div>
+  <header>Peluang Memenangi Telefon Baharu!</header>
 
   <ul class="steps">
-    <li>Pilih umur anda</li>
-    <li>Klik "Tuntut Telefon"</li>
-    <li>Ikuti arahan seterusnya</li>
+    <li>Pilih kumpulan umur anda</li>
+    <li>Klik butang "Teruskan"</li>
+    <li>Lengkapkan langkah seterusnya</li>
   </ul>
 
-  <button class="select-btn" onclick="claim()">Tuntut Telefon</button>
+  <button class="select-btn" onclick="claim()">Teruskan</button>
 
   <div class="winner-container" id="winnerContainer"></div>
 
-  <script>
-    // Ambil subid dari URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const subid = urlParams.get("subid") || "default";
+  <div class="footer">
+    Ini ialah promosi pengiklanan. Tiada pembelian diperlukan.<br>
+    <a href="#">Dasar Privasi</a> | <a href="#">Syarat</a>
+  </div>
 
-    // Sediakan link offer dengan subid
+  <script>
+    // ✅ Отримуємо SUBID з URL від PropellerAds
+    const urlParams = new URLSearchParams(window.location.search);
+    const subid = urlParams.get("subid") || "${SUBID}"; // fallback
+
+    // ✅ Вставляємо лінк із subid
     const offerUrl = `https://singingfiles.com/show.php?l=0&u=2417307&id=70093&subid=${subid}`;
 
     function claim() {
       window.location.href = offerUrl;
     }
 
-    // Countdown
-    const timerEl = document.getElementById('timer');
-    let timeLeft = 300;
-    function updateTimer() {
-      const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
-      const sec = String(timeLeft % 60).padStart(2, '0');
-      timerEl.textContent = `${min}:${sec}`;
-      if (timeLeft > 0) timeLeft--;
-    }
-    updateTimer();
-    setInterval(updateTimer, 1000);
-
-    // Simulasi pemenang
+    // ✅ Симуляція "виграші"
     const winners = [
-      {name: 'Aisyah', city: 'Kuala Lumpur', prize: 'iPhone 15 Pro Max'},
+      {name: 'Aisyah', city: 'Kuala Lumpur', prize: 'iPhone 15'},
       {name: 'Ahmad', city: 'Johor Bahru', prize: 'Samsung Galaxy S24'},
-      {name: 'Nurul', city: 'Shah Alam', prize: 'Huawei P60'},
-      {name: 'Muhammad', city: 'Petaling Jaya', prize: 'Oppo Reno11'},
-      {name: 'Siti', city: 'Kuching', prize: 'Realme GT 6'},
+      {name: 'Siti', city: 'Shah Alam', prize: 'Huawei Nova 12'},
+      {name: 'Zul', city: 'Melaka', prize: 'Realme GT'},
     ];
 
     let winnerIndex = 0;
@@ -196,16 +178,15 @@
       const w = winners[winnerIndex];
       const el = document.createElement('div');
       el.className = 'winner-notification';
-      el.textContent = `${w.name} dari ${w.city} baru sahaja memenangi ${w.prize}!`;
+      el.textContent = `${w.name} dari ${w.city} baru sahaja menerima ${w.prize}`;
       document.getElementById('winnerContainer').appendChild(el);
       setTimeout(() => el.remove(), 7000);
       winnerIndex = (winnerIndex + 1) % winners.length;
     }
 
-    setTimeout(() => setInterval(showNextWinner, 3000), 3000);
+    setTimeout(() => setInterval(showNextWinner, 5000), 3000);
   </script>
 </body>
 </html>
-
 
 
