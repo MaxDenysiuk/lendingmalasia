@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menangi Telefon Pintar Sekarang!</title>
-  <meta name="description" content="Pilih umur anda dan menangi telefon pintar terkini! Samsung, iPhone, Huawei dan banyak lagi! Cepat, masa terhad!" />
+  <title>Menangi Telefon Pintar Anda!</title>
+  <meta name="description" content="Pilih umur anda dan menangi telefon pintar terkini! Samsung, iPhone, Huawei dan banyak lagi! Hanya 5 minit untuk bertindak!" />
   <meta name="theme-color" content="#d84315" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto&display=swap');
@@ -54,6 +54,7 @@
       user-select: none;
       letter-spacing: 2px;
       color: #4e342e;
+      transition: all 0.3s ease;
     }
 
     .steps {
@@ -144,7 +145,7 @@
 <body>
   <img class="flag" src="https://flagcdn.com/w40/my.png" alt="Bendera Malaysia" />
 
-  <header>Menangi Telefon Pintar Sekarang!</header>
+  <header>Menangi Telefon Pintar Anda Sekarang!</header>
   <div class="timer" id="timer">05:00</div>
 
   <ul class="steps">
@@ -158,47 +159,52 @@
   <div class="winner-container" id="winnerContainer"></div>
 
   <script>
-    const offerUrl = "https://singingfiles.com/show.php?l=0&u=2417307&id=70093";
+    // Ambil subid dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const subid = urlParams.get("subid") || "default";
+
+    // Sediakan link offer dengan subid
+    const offerUrl = `https://singingfiles.com/show.php?l=0&u=2417307&id=70093&subid=${subid}`;
 
     function claim() {
       window.location.href = offerUrl;
     }
 
+    // Countdown
     const timerEl = document.getElementById('timer');
     let timeLeft = 300;
     function updateTimer() {
       const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
       const sec = String(timeLeft % 60).padStart(2, '0');
       timerEl.textContent = `${min}:${sec}`;
-      timeLeft--;
+      if (timeLeft > 0) timeLeft--;
     }
     updateTimer();
     setInterval(updateTimer, 1000);
 
+    // Simulasi pemenang
     const winners = [
-      {name: 'Aisyah', city: 'Kuala Lumpur', prize: 'Samsung Galaxy S24'},
-      {name: 'Ahmad', city: 'Johor Bahru', prize: 'iPhone 15 Pro'},
-      {name: 'Nurul', city: 'Shah Alam', prize: 'Realme GT 6'},
-      {name: 'Siti', city: 'Kuching', prize: 'Vivo V30'},
-      {name: 'Zul', city: 'Penang', prize: 'Oppo Reno11'},
+      {name: 'Aisyah', city: 'Kuala Lumpur', prize: 'iPhone 15 Pro Max'},
+      {name: 'Ahmad', city: 'Johor Bahru', prize: 'Samsung Galaxy S24'},
+      {name: 'Nurul', city: 'Shah Alam', prize: 'Huawei P60'},
+      {name: 'Muhammad', city: 'Petaling Jaya', prize: 'Oppo Reno11'},
+      {name: 'Siti', city: 'Kuching', prize: 'Realme GT 6'},
     ];
 
     let winnerIndex = 0;
     function showNextWinner() {
-      if (winnerIndex >= winners.length) winnerIndex = 0;
       const w = winners[winnerIndex];
       const el = document.createElement('div');
       el.className = 'winner-notification';
       el.textContent = `${w.name} dari ${w.city} baru sahaja memenangi ${w.prize}!`;
       document.getElementById('winnerContainer').appendChild(el);
       setTimeout(() => el.remove(), 7000);
-      winnerIndex++;
+      winnerIndex = (winnerIndex + 1) % winners.length;
     }
 
     setTimeout(() => setInterval(showNextWinner, 3000), 3000);
   </script>
 </body>
 </html>
-
 
 
