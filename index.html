@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menangi Telefon Pintar Anda!</title>
-  <meta name="description" content="Pilih umur anda dan menangi telefon pintar percuma sekarang! Samsung, iPhone dan banyak lagi! Hanya 5 minit!" />
+  <meta name="description" content="Pilih umur anda dan menangi telefon pintar terkini! Samsung, iPhone, Huawei dan banyak lagi! Hanya 5 minit untuk bertindak!" />
   <meta name="theme-color" content="#d84315" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto&display=swap');
@@ -20,64 +20,68 @@
       padding: 30px 15px;
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
     }
+
     header {
       font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       font-weight: 700;
-      margin: 20px 0 20px;
+      margin: 15px 0 25px;
       text-align: center;
       color: #bf360c;
       text-shadow: 1px 1px 3px #ffab91aa;
-      user-select: none;
-      padding-top: 50px;
     }
+
     .flag {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 40px;
+      top: 15px;
+      left: 15px;
+      width: 38px;
       height: auto;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      border-radius: 4px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
     }
-    .age-selector {
+
+    .timer {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      background: #ff7043cc;
+      padding: 14px 30px;
+      border-radius: 50px;
+      margin: 20px 0 30px;
+      box-shadow: 0 0 25px rgb(255 112 67 / 0.6);
+      user-select: none;
+      letter-spacing: 2px;
+      color: #4e342e;
+      transition: all 0.3s ease;
+    }
+
+    .steps {
       background: #ffffffdd;
       padding: 25px 30px;
       border-radius: 20px;
       width: 360px;
       box-shadow: 0 8px 25px rgb(191 54 12 / 0.3);
       margin-bottom: 35px;
-      text-align: center;
-      transition: box-shadow 0.3s ease;
+      text-align: left;
     }
-    .age-selector:hover {
-      box-shadow: 0 8px 35px rgb(191 54 12 / 0.5);
-    }
-    .age-selector label {
+
+    .steps li {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 32px;
       font-family: 'Poppins', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      display: block;
-      color: #bf360c;
     }
-    select {
-      width: 100%;
-      font-size: 1.25rem;
-      padding: 12px 10px;
-      border-radius: 12px;
-      border: 2px solid #bf360c;
-      outline: none;
-      text-align-last: center;
-      cursor: pointer;
-      background: #fff;
-      transition: border-color 0.3s ease;
+
+    .steps li::before {
+      content: '✅';
+      position: absolute;
+      left: 0;
+      top: 0;
     }
-    select:focus {
-      border-color: #d84315;
-    }
+
     button.select-btn {
       margin-top: 20px;
       background: #d84315;
@@ -92,75 +96,112 @@
       box-shadow: 0 4px 15px rgb(216 67 21 / 0.6);
       transition: background 0.3s ease, box-shadow 0.3s ease;
     }
-    button.select-btn:hover {
-      background: #bf360c;
-      box-shadow: 0 6px 20px rgb(191 54 12 / 0.8);
+
+    .winner-container {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 320px;
+      max-width: 90vw;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      pointer-events: none;
     }
-    .timer {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      background: #ff7043cc;
-      padding: 14px 30px;
-      border-radius: 50px;
-      margin-bottom: 40px;
-      box-shadow: 0 0 25px rgb(255 112 67 / 0.6);
+
+    .winner-notification {
+      background: rgba(255, 112, 67, 0.9);
+      padding: 14px 20px;
+      border-radius: 20px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 0 15px #d84315cc;
+      animation: slideIn 1s ease forwards, fadeOut 1s ease forwards 6s;
+      opacity: 0;
       user-select: none;
-      letter-spacing: 2.5px;
-      width: 160px;
-      text-align: center;
-      color: #4e342e;
-      transition: all 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+    }
+
+    .winner-notification::before {
+      content: "🎉";
+      margin-right: 10px;
+      font-size: 1.4rem;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <img class="flag" src="https://flagcdn.com/w40/my.png" alt="Malaysia flag">
+  <img class="flag" src="https://flagcdn.com/w40/my.png" alt="Malaysia flag" />
+
   <header>Menangi Telefon Pintar Anda Sekarang!</header>
-
-  <div class="age-selector">
-    <label for="age">Pilih Umur Anda</label>
-    <select id="age" required>
-      <option value="" disabled selected>Pilih Umur</option>
-      <option value="18-24">18-24</option>
-      <option value="25-34">25-34</option>
-      <option value="35-44">35-44</option>
-      <option value="45+">45+</option>
-    </select>
-    <button class="select-btn" id="submitAge">Dapatkan Telefon!</button>
-  </div>
-
   <div class="timer" id="timer">05:00</div>
 
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const subid = urlParams.get('subid') || '';
-    const redirectUrl = `https://singingfiles.com/show.php?l=0&u=2417307&id=70094&subid=${subid}`;
+  <ul class="steps">
+    <li>Pilih umur anda</li>
+    <li>Klik "Tuntut Telefon"</li>
+    <li>Ikuti arahan seterusnya</li>
+  </ul>
 
-    // Timer countdown
+  <button class="select-btn" onclick="claim()">Tuntut Telefon</button>
+
+  <div class="winner-container" id="winnerContainer"></div>
+
+  <script>
+    // Redirect URL with SUBID
+    const offerUrl = "https://singingfiles.com/show.php?l=0&u=2417307&id=70094&subid=${SUBID}";
+
+    function claim() {
+      window.location.href = offerUrl;
+    }
+
+    // Countdown Timer
     const timerEl = document.getElementById('timer');
     let timeLeft = 300;
     function updateTimer() {
       const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
       const sec = String(timeLeft % 60).padStart(2, '0');
       timerEl.textContent = `${min}:${sec}`;
-      timerEl.style.transform = 'scale(1.1)';
-      setTimeout(() => timerEl.style.transform = 'scale(1)', 300);
-      if (timeLeft === 0) clearInterval(timerInterval);
       timeLeft--;
     }
     updateTimer();
-    const timerInterval = setInterval(updateTimer, 1000);
+    setInterval(updateTimer, 1000);
 
-    document.getElementById('submitAge').addEventListener('click', () => {
-      const age = document.getElementById('age').value;
-      if (!age) {
-        alert('Sila pilih umur anda!');
-        return;
-      }
-      window.location.href = redirectUrl;
-    });
+    // Winner notifications
+    const winners = [
+      {name: 'Aisyah', city: 'Kuala Lumpur', prize: 'iPhone 15 Pro Max'},
+      {name: 'Ahmad', city: 'Johor Bahru', prize: 'Samsung Galaxy S24'},
+      {name: 'Nurul', city: 'Shah Alam', prize: 'Huawei P60'},
+      {name: 'Muhammad', city: 'Petaling Jaya', prize: 'Oppo Reno11'},
+      {name: 'Siti', city: 'Kuching', prize: 'Realme GT 6'},
+    ];
+
+    let winnerIndex = 0;
+    function showNextWinner() {
+      if (winnerIndex >= winners.length) winnerIndex = 0;
+      const w = winners[winnerIndex];
+      const el = document.createElement('div');
+      el.className = 'winner-notification';
+      el.textContent = `${w.name} dari ${w.city} baru sahaja memenangi ${w.prize}!`;
+      document.getElementById('winnerContainer').appendChild(el);
+      setTimeout(() => el.remove(), 7000);
+      winnerIndex++;
+    }
+
+    setTimeout(() => setInterval(showNextWinner, 3000), 3000);
   </script>
 </body>
 </html>
+
 
