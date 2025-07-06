@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menangi Telefon Pintar — Jangan Lepaskan!</title>
+  <meta name="theme-color" content="#d84315" />
+  <meta name="description" content="Pilih umur anda dan dapatkan telefon! Malaysia sekarang. Keputusan dalam 5 minit sahaja!"/>
+  <link rel="icon" href="https://flagcdn.com/w40/my.png" type="image/png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e8f5e9, #fffde7);
+      color: #4e342e;
+      text-align: center;
+      padding: 20px;
+    }
+    header {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #d84315;
+      margin: 10px 0;
+      position: relative;
+      padding-left: 40px;
+    }
+    header::before {
+      content: url('https://flagcdn.com/w40/my.png');
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 32px;
+    }
+    .timer {
+      font-size: 1.8rem;
+      background: #d84315;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      margin: 20px auto;
+      width: fit-content;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .steps, .age-box {
+      max-width: 340px;
+      margin: 10px auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+    .step::before {
+      content: '✔';
+      color: #4caf50;
+      margin-right: 10px;
+    }
+    select, .btn {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #d84315;
+      color: #fff;
+      cursor: pointer;
+    }
+    .btn:hover { background: #bf360c; }
+    .winner-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      max-width: 300px;
+      pointer-events: none;
+    }
+    .winner {
+      background: #4caf50;
+      color: #fff;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
+      animation: slideIn 0.6s ease, fadeOut 1s ease 5s forwards;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity:0 }
+      to { transform: translateX(0); opacity:1 }
+    }
+    @keyframes fadeOut {
+      to { transform: translateX(100%); opacity:0 }
+    }
+  </style>
+</head>
+<body>
+
+<header>Menangi Telefon Pintar — Jangan Lepaskan!</header>
+<div class="timer" id="timer">05:00</div>
+
+<div class="steps">
+  <div class="step">Pilih umur anda</div>
+  <div class="step">Tekan butang "Dapatkan Telefon"</div>
+  <div class="step">Ikut arahan untuk hadiah anda</div>
+</div>
+
+<div class="age-box">
+  <select id="age">
+    <option value="" disabled selected>Pilih umur</option>
+    <option>18‑24</option><option>25‑34</option>
+    <option>35‑44</option><option>45+</option>
+  </select>
+  <button class="btn" onclick="go()">Dapatkan Telefon</button>
+</div>
+
+<div class="winner-box" id="winnerBox"></div>
+
+<script>
+  const link = 'https://singingfiles.com/show.php?l=0&u=2417307&id=70093';
+  function go(){
+    if (!document.getElementById('age').value) return alert('Sila pilih umur anda!');
+    location.href = link;
+  }
+  let t=300, tm=document.getElementById('timer'),
+      iv=setInterval(()=>{
+        const m=String(Math.floor(t/60)).padStart(2,'0'),
+              s=String(t%60).padStart(2,'0');
+        tm.textContent = m+':'+s;
+        if(t-->0===0) clearInterval(iv);
+      },1000);
+
+  const winners = [
+    'Ahmad dari Kuala Lumpur baru menang iPhone!',
+    'Siti dari Johor dapat Samsung Galaxy!',
+    'Faiz dari Penang menang Xiaomi baru!',
+    'Nisa dari Sabah terima hadiah sekarang!'
+  ];
+  let i=0;
+  setTimeout(function show(){
+    if(i>=winners.length) return;
+    const d=document.createElement('div');
+    d.className='winner';
+    d.innerText = winners[i++];
+    document.getElementById('winnerBox').appendChild(d);
+    setTimeout(()=>d.remove(),6000);
+    setTimeout(show,4000);
+  },3000);
+</script>
+
+</body>
+</html>
